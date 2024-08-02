@@ -1,14 +1,6 @@
-from flask import Flask, request
-import os
+from app import create_app
 
-app = Flask(__name__)
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    if request.method == 'GET':
-        return "Hello, this is a GET request!"
-    elif request.method == 'POST':
-        return "Hello, this is a POST request!"
+app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
